@@ -3,6 +3,7 @@
 #The test genome we are using is phix.fa
 #wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/phix.fa
 
+#parsing a DNA reference genome form a file in FASTA format
 #read the fasta file and store the sequence in variable/string genome excluding the header
 def readGenome(filename):
     genome= ''
@@ -58,6 +59,7 @@ print('%d / %d reads matched exactly!' %(numMatched, len(reads))) # Now calculat
 #Now let's try with an actual read from fastq file.
 #wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/ERR266411_1.first1000.fastq
 
+#Parsing the read and quality strings from a FASTQ file containing sequencing reads
 #Read the fastq file and store the sequences into the list sequences[]
 def readFastq(filename):
     sequences = []
@@ -78,7 +80,8 @@ def readFastq(filename):
 phix_reads, _ = readFastq("ERR266411_1.first1000.fastq")
 
 #Reads can come from both the strands of the DNA
-#Must match not only the foward but also the reverse direction of the genome
+#Must match not only the forward but also the reverse direction of the genome
+#Following function takes a DNA string and returns its reverse complement:
 def reverseComplement(s):
     complement = {'A': 'T', 'T' : 'A', 'G' : 'C', 'C' : 'G', 'N': 'N'}
     t = ''
