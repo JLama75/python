@@ -101,3 +101,16 @@ for r in phix_reads:
         numMatched += 1
 print('%d / %d reads matched exactly!' %(numMatched, n))# Now calculating matches out of total reads
 #932 / 1000 reads matched exactly!
+
+
+genome = readGenome('lambda_virus.dnas')
+numMatched = 0 #counting the total number of matches
+r = 'AGGT'
+r = 'TTAA'
+r = 'ACTAAGT'
+r = 'AGTCGA'
+matches = naive(r, genome)
+len(matches)
+matchesR = naive(reverseComplement(r), genome) #matching the reverse complement of the read to the genome and adds to the list of matches
+len(matchesR)
+matches.extend(naive(reverseComplement(r), genome))
