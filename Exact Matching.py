@@ -114,3 +114,23 @@ len(matches)
 matchesR = naive(reverseComplement(r), genome) #matching the reverse complement of the read to the genome and adds to the list of matches
 len(matchesR)
 matches.extend(naive(reverseComplement(r), genome))
+
+
+
+#What if we need to do approximate matching and include mismatches. mistmatches = 2
+#updating the naive function.
+def naive(p, t): #p--> pattern ; t: text file
+    occurrences = [] #empty list to record all instances of matching
+    for i in range(len(t)-len(p)+1): #outer loop to do alignments over t
+        match = True
+        count = 0
+        for j in range(len(p)):
+            if count > 2:
+                match = False
+                break
+            if not t[i+j] == p[j]:#comparing for each position in t with all positions in j
+                count += 1
+        if match:
+            occurrences.append(i)
+    return occurrences
+
