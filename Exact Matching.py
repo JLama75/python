@@ -1,4 +1,6 @@
 #Naive exact matching
+#Generate your own artificial random reads from a fasta file and use an exact matching algorithm to align them to the same fast file.
+
 #wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/phix.fa
 #read the fasta file and store the sequence in variable/string genome excluding the header
 def readGenome(filename):
