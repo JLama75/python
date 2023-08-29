@@ -1,7 +1,8 @@
-#Naive exact matching
-#Generate your own artificial random reads from a fasta file and use an exact matching algorithm to align them to the same fast file.
+#Naive exact matching using randomly generated reads and actual reads from fastq file.
 
+#The test genome we are using is phix.fa
 #wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/phix.fa
+
 #read the fasta file and store the sequence in variable/string genome excluding the header
 def readGenome(filename):
     genome= ''
@@ -31,6 +32,7 @@ t = 'AGCTTAGATAGC'
 p = 'AG'
 naive(p,t)
 
+#Now generate your own artificial random reads from a fasta file and use an exact matching algorithm to align them to the same fast file.
 import random
 def generateReads(genome, numReads, readLen):
     #Generate artificial reads from random positions in the given genome.
@@ -43,12 +45,56 @@ def generateReads(genome, numReads, readLen):
     return reads
 reads = generateReads(genome, 100, 100)
 
-#How many of the artifically generated reads match back to the genome using exact matching
+#How many of the artifically generated reads match back to the genome using exact matching 
 #should match 100%
-#naive(reads, genome)
 numMatched = 0 #counting the total number of matches
 for r in reads:
     matches = naive(r, genome) # matches is the list of indices where read matches the genome
     if len(matches) > 0:
         numMatched += 1
 print('%d / %d reads matched exactly!' %(numMatched, len(reads))) # Now calculating matches out of total reads
+#100 / 100 reads matched exactly!
+
+#Now let's try with an actual read from fastq file.
+#wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/ERR266411_1.first1000.fastq
+
+#Read the fastq file and store the sequences into the list sequences[]
+def readFastq(filename):
+    sequences = []
+    qualities = []
+    n = 0
+    l = []
+    with open(filename, 'r') as fh:
+        while True:
+            fh.readline() #skip name line
+            seq = fh.readline().rstrip() #read base sequences
+            fh.readline() #skip placeholder line
+            qual = fh.readline().rstrip() # read base quality line
+            if len(seq) == 0:
+                break #end of the file
+            sequences.append(seq)
+            qualities.append(qual)
+    return sequences, qualities
+phix_reads, _ = readFastq("ERR266411_1.first1000.fastq")
+
+#Reads can come from both the strands of the DNA
+#Must match not only the foward but also the reverse direction of the genome
+def reverseComplement(s):
+    complement = {'A': 'T', 'T' : 'A', 'G' : 'C', 'C' : 'G', 'N': 'N'}
+    t = ''
+    for base in s:
+        t = complement[base] + t
+    return t
+
+#Let's do exact matching and count them.
+numMatched = 0 #counting the total number of matches
+n = 0
+for r in phix_reads:
+    r = r[:30] #originally r length is 100 so might be too big for pattern matching
+    matches = naive(r, genome) # matches is the list of indices where read matches the genome
+    matches.extend(naive(reverseComplement(r), genome)) #matching the reverse complement of the read to the genome and adds to the list of matches
+    n += 1 #n is the number of reads in the phix_reads
+    if len(matches) > 0:
+        numMatched += 1
+print('%d / %d reads matched exactly!' %(numMatched, n))# Now calculating matches out of total reads
+#932 / 1000 reads matched exactly!
