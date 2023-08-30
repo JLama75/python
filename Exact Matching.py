@@ -21,8 +21,8 @@ def naive(p, t): #p--> pattern ; t: text file
     occurrences = [] #empty list to record all instances of matching
     for i in range(len(t)-len(p)+1): #outer loop to do alignments over t
         match = True
-        for j in range(len(p)):
-            if not t[i+j] == p[j]:#comparing for each position in t with all positions in j
+        for j in range(len(p)): # inner loop to do character comparison
+            if not t[i+j] == p[j]:#comparing each position in t with all positions in j
                 match = False
                 break
         if match:
