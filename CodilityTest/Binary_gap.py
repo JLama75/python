@@ -13,9 +13,9 @@ def solution(N):
     binary = format(integer, 'b')
     k = len(binary)
     print(N, binary, k)
-    CountZeros = [] #list to store the total zeros counted after 1
-    strings = [] #list to store the string of numbers
-    if len(binary) == 1:
+    CountZeros = [] #list to store the binary gap numbers
+    strings = [] #list to store the string of binaries having the binary gap
+    if len(binary) == 1: 
         return 0
     for i in range(0, k-1): #if k = 5,then 0 to 4
         count = 0 #initialize count to 0
@@ -24,23 +24,23 @@ def solution(N):
             #print("binary is not equal to 1: skip")
             continue
         s = '1'  # initialize string
-        #starting inner loop that checks whether values after 1 is zero or not and counts the number of zeros
+        # Starting inner loop that checks whether values after 1 are zeros and stores binary gaps
         for j in range(1, k): #if k = 5, then 1 to 4
             if (i + j) > k - 1:
                 #print("break as ", i+j, " exceed", k-1)
                 break
-            if binary[i + j] == '0':
+            if binary[i + j] == '0': #checking values after 1
                 s = s + binary[i + j]
-                #print("Inside loop: i= ", i, "s = ", s)
+                #print("Inside loop: i= ", i, "string of binaries = ", s)
                 continue
-            count = j-1
-            s = s + binary[i + j]
+            count = j-1 #Count of zeros or binary gaps
+            s = s + binary[i + j] 
             #print("After last pattern match: count and string is ",count, s)
             break
         strings.append(s)
         CountZeros.append(count)
     #print("All counts: ", CountZeros)
-    BinaryGap = max(CountZeros)
+    BinaryGap = max(CountZeros) #finding the largest binary gap 
     return BinaryGap
 
 #Generating random numbers and calling the function using them
