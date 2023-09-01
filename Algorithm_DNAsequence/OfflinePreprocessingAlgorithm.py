@@ -82,6 +82,7 @@ class index(object):
             if self.index[i][0] != kmer: #compares text substring in index at i position to the pattern substring 
                 break
             hits.append(self.index[i][1]) #append the offset which is the second value of tupule
+            i += 1
         return hits
 
 #####################
