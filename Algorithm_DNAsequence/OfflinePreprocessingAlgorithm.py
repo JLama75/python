@@ -1,8 +1,8 @@
 
 #Preprocessing.
-#Algorithm that preprocesses T is offline. Otherwise, algorithm is online
+#Algorithm that preprocesses T is offline. Otherwise, the algorithm is online
 
-#Web search engine and Read alignment is offline algroithms
+#Web search engine and Read alignment is offline algorithms
 #Taking the reference genome and preprocessing it somehow in a way it matches many different reads faster
 #offline algorithm: Preprocess T
 #Index of T: List of pairs of substring of cetain length(kmer) and offsets of genome where they occur
