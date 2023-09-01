@@ -3,13 +3,13 @@
 #The test genome we are using is phix.fa
 #wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/phix.fa
 
-#parsing a DNA reference genome form a file in FASTA format
-#read the fasta file and store the sequence in variable/string genome excluding the header
+#parsing a DNA reference genome from a file in FASTA format
+# Read the fasta file and store the sequence in variable/string genome excluding the header
 def readGenome(filename):
     genome= ''
     with open(filename, 'r') as fh:
         for line in fh:
-            #ignore the header line with genome information
+            # Ignore the header line with genome information
             if not line[0] == '>':
                 genome += line.rstrip()
     return genome
@@ -37,8 +37,8 @@ naive(p,t)
 import random
 def generateReads(genome, numReads, readLen):
     #Generate artificial reads from random positions in the given genome.
-    #numReads is the total number of different sequences you want to generate
-    #readLen is the total length of each of the read sequence you generate
+    #numReads is the total number of different read sequences you want to generate
+    #readLen is the total length of each of the read sequences 
     reads = []
     for _ in range(numReads):
         start = random.randint(0, len(genome)- readLen) -1 #random.randint generates integers at random starting from 0 to n
@@ -96,7 +96,7 @@ for r in phix_reads:
     r = r[:30] #originally r length is 100 so might be too big for pattern matching
     matches = naive(r, genome) # matches is the list of indices where read matches the genome
     matches.extend(naive(reverseComplement(r), genome)) #matching the reverse complement of the read to the genome and adds to the list of matches
-    n += 1 #n is the number of reads in the phix_reads
+    n += 1 #counting number of read sequences in the phix_reads
     if len(matches) > 0:
         numMatched += 1
 print('%d / %d reads matched exactly!' %(numMatched, n))# Now calculating matches out of total reads
@@ -114,8 +114,6 @@ len(matches)
 matchesR = naive(reverseComplement(r), genome) #matching the reverse complement of the read to the genome and adds to the list of matches
 len(matchesR)
 matches.extend(naive(reverseComplement(r), genome))
-
-
 
 #What if we need to do approximate matching and include mismatches. mistmatches = 2
 #updating the naive function.
