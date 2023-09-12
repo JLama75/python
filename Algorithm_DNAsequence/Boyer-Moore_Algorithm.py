@@ -12,6 +12,8 @@
 #Now let's create a boyer_moore function that takes a pattern, text, and preprocessed boyerMoore object
 #This function does the alignment and character matching by skipping/shifting past unnecessary alignments using the info provided by the boyerMoore object
 
+
+#Refer to BoyerMooreClass.py to find the code for BoyerMoore Class
 def boyer_moore(p, p_bm, t):
     i = 0
     occurrences = [] #list to store indices that give matches
