@@ -58,14 +58,14 @@ table['CGT']
 import bisect
 #Now make a class index that preprocesses the text into hash and then if given a pattern also querries the index 
 ########################
-class index(object):
-    #two methods: one that preprocesses the text, second that querries the index
+class Index(object):
+    #two methods: one that preprocesses the text into index, second method that querries the index
     def __init__(self, t, k): #t is the text/string, k is the k-mer for indexing
         self.k = k #set variables
         self.index = [] #list
         #loop through the text t, take every k-mer of length k and add to the index along with their offset
         #makes this index at the construction of the class
-        for i in range(len(t) - k + 1): #gives all index such that k-mer doesn't past the text
+        for i in range(len(t) - k + 1): #gives all index such that k-mer doesn't go past the text
             self.index.append((t[i:i+k], i)) #appending. if i =0 and k=3, then we have tuppule (t[0:3], 0) = (GTG, 0)
         self.index.sort() #order them #might take some time
 
@@ -78,32 +78,33 @@ class index(object):
         i = bisect.bisect_left(self.index, (kmer, -1)) #sending tupules in the module bisect. -1: all indices in the list > -1
         #bisect_left gives info about the bucket number
         hits = []
-        while i < len(self.index): #since the offset provided by bisect could mean a match or not performing additional validation
+        while i < len(self.index): #since the offset provided by bisect could mean a match or not. There could also be multiple matches beyond the bisect position. Therefore performing additional validation starting from left to end
             if self.index[i][0] != kmer: #compares text substring in index at i position to the pattern substring 
                 break
             hits.append(self.index[i][1]) #append the offset which is the second value of tupule
             i += 1
-        return hits
+        return hits #could have multiple offsets/positions in the hits
 
 #####################
 
-def queryIndex(p, t, index):
-    k = index.k #accessing index class vaiable 'k'.
+def queryIndex(p, t, index): #index is an object of class Index
+    k = index.k #accessing index class variable 'k'. #object.variable
     offsets = []
     #verification step
-    for i in index.query(p): #calling query function within the index class without making an object/instance
+    for i in index.query(p): #calling query function within the index class. #object.function(parameters)
+         #looping through the multiple offsets/positions and performing additional verification
         if p[k:] == t[i+k:i+len(p)]: # if k =3, len(p) = 6, i = 100 then, t[103:106]
             offsets.append(i)
-    return offsets
+    return offsets #is the final position where pattern matches text
 
 ##########################
 
 t = 'GCTACGATCTAGAATCTA'
 p = 'TCTA'
 
-index = Index(t, 2)
-print(queryIndex(p, t, index))
+index = Index(t, 2) #create an object index in class Index. #index is created
+print(queryIndex(p, t, index)) #The function queryIndex calls query function of Index class within it. 
 
-#verify
+#verify the patterns
 t[7:11]
 t[14:18]
