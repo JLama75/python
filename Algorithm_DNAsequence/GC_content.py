@@ -71,3 +71,29 @@ for seq in seqs:
     count.update(seq)
 print(count)
 #N base is when the base caller has no confidence at all and doesn't want to make a call.
+
+
+#Generating histogram of low quality score (q<=2)
+
+def findQualsByPos(qualities):
+    qualh = [0] * 100
+    totals = [0] * 100
+
+    for qual in qualities:
+        i = 0
+        for phred in qual:
+            q = phred33toQ(phred)
+            if q <= 10:
+                qualh[i] += 1
+            totals[i] += 1
+            i += 1
+        print("Readlength", i)
+    for i in range(len(qualh)):
+        if totals[i] > 0:
+            qualh[i] /= float(totals[i])
+    return qualh
+
+qualh = findQualsByPos(quals)
+plt.plot(range(len(qualh)), qualh)
+plt.bar(range(len(qualh)), qualh)
+
