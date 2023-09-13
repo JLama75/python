@@ -128,7 +128,9 @@ def naive(p, t): #p--> pattern ; t: text file
                 break
             if not t[i+j] == p[j]:#comparing for each position in t with all positions in j
                 count += 1
-        if match:
+        if count <= 2:
             occurrences.append(i)
+            print("count:", count)
     return occurrences
+
 
