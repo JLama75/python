@@ -1,4 +1,6 @@
-#Check BoyerMooreClass.py to get the code where I defined the class called BoyerMoore, which is used later on.
+#Using approximate matching using pigeonhole principle combining with boyer Moore exact matching algorithm
+
+#Check BoyerMooreClass.py to get the code where I defined the class called BoyerMoore that preprocesses the pattern 'p', which is used later on.
 def boyer_moore(p, p_bm, t):
     i = 0
     occurrences = [] #list to store indices that give matches
