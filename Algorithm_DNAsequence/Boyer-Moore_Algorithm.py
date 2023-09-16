@@ -28,7 +28,7 @@ def boyer_moore(p, p_bm, t):
                 shift = max(shift, skip_bc, skip_gs) #whichever is the largest will save us the most time
                 mismatched = True #set mismatch to True and break
                 break
-        if not mismatched: #If there was no mismatch
+        if not mismatched: #Checking if the mismatched variable is 'not' True (False): In case of no mismatches
             occurrences.append(i) #gives the offset/position where the match occurred
             skip_gs = p_bm.match_skip() #still needs to shift using the good suffix (gs) rule
             shift = max(shift, skip_gs)
