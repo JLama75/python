@@ -36,24 +36,25 @@ score = [[0, 4, 2, 4, 8], \
 def globalAlignment(x, y):
     D = []
     for i in range(len(x) + 1):
-        D.append([0]* (len(y)+1)) #making a matrix for x and y including empty string/gaps, where x is pattern and y is text with elements '0'
+        D.append([0]* (len(y)+1)) #making a matrix for x and y including empty string/gaps with all elements initialized to zero, where x is pattern and y is text 
 
     for i in range(1, len(x) + 1):
-        # when skipping characters in 'y'. #D[i][0] corresponds to all rows of 1st column (empty String/gap of y/text) except '0'th row
+        # when skipping characters in 'y'. #D[i][0] corresponds to all rows of 1st column (x vs. empty String/gap of y) except '0'th row
         #To calculate the penalty score look at the rows of the penalty matrix corresponding to the character in the pattern or x
-        D[i][0] = D[i-1][0] + score[alphabet.index(x[i-1])][-1] #alphabet.index gives you the position/index of that xth character in the list, alphabet(0 to 3). score[][-1] searches in the last column of the matrix, score
+        D[i][0] = D[i-1][0] + score[alphabet.index(x[i-1])][-1] #alphabet.index gives you the position/index of that xth character in the list, alphabet(0 to 3). score[][-1] searches in the last column of the score matrix
     for i in range(1, len(y) + 1):
         # when skipping characters in 'x'. #D[0][i] corresponds to all columns of 1st row (empty String/gap of x/text) except '0'th column
         D[0][i] = D[0][i-1] + score[-1][alphabet.index(y[i-1])]
 
     for i in range(1, len(x) + 1):
         for j in range(1, len(y)+1):
-            distHor = D[i][j-1] + score[-1][alphabet.index(y[j-1])]
-            distVer = D[i-1] [j] + score[alphabet.index(x[i-1])][-1]
+            distHor = D[i][j-1] + score[-1][alphabet.index(y[j-1])] #When Gap in y is introduced. Adding in the penalty of said gap. 
+            #remember index of matrix and text is different due to the addition of gaps in the matrix. So, say if D[2][2] is (score between 'A' and 'T' in x and y) then y[2] is (say 'G'), which occurs before 'T' in the text 'y' (....GT...)
+            distVer = D[i-1] [j] + score[alphabet.index(x[i-1])][-1] #When gap in x is introduced. Adding in the penalty of said gap.
             if x[i-1] == y[j-1]:
                 distDiag = D[i-1] [j-1]
             else:
-                distDiag = D[i - 1][j - 1] + score[alphabet.index(x[i-1])][alphabet.index(y[j-1])]
+                distDiag = D[i - 1][j - 1] + score[alphabet.index(x[i-1])][alphabet.index(y[j-1])] #Adding in the penalty of substitution
             D[i][j] = min(distHor, distVer, distDiag)
     return D[-1][-1]
   
