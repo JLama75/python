@@ -36,7 +36,7 @@ score = [[0, 4, 2, 4, 8], \
 def globalAlignment(x, y):
     D = []
     for i in range(len(x) + 1):
-        D.append([0]* (len(y)+1)) #making a matrix for x and y including empty string/gaps, where x is pattern and y is text/genome with elements '0'
+        D.append([0]* (len(y)+1)) #making a matrix for x and y including empty string/gaps, where x is pattern and y is text with elements '0'
 
     for i in range(1, len(x) + 1):
         # when skipping characters in 'y'. #D[i][0] corresponds to all rows of 1st column (empty String/gap of y/text) except '0'th row
