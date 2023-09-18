@@ -13,7 +13,7 @@ def readFastq(filename):
             if len(seq) == 0: #after reaching the end of the file
                 break
             sequences.append(seq)
-            qualities.append(seq)
+            qualities.append(qual)
     return sequences, qualities
 
 seqs, quals = readFastq('SRR835775_1.first1000.fastq')
