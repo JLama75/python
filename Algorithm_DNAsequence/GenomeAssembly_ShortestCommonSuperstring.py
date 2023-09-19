@@ -1,4 +1,4 @@
-#shortest common superstring problem (SCS)
+#shortest common superstring problem (SCS): finding the shortest string that contains all the input string or substring. Used for genome assembly
 #S: BAA AAB BBA ABA ABB BBB AAA BAB
 #Concat(S): BAAAABBBAABAABBBBBAAABAB
 #SCS(S): AAABBBABAA
