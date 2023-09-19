@@ -1,7 +1,8 @@
 #Greedy shortest common superstring algorithm:
 #locate the edge that corresponds to the greatest overlap. Then combine the two nodes/strings together to have a new string.
 #Then using the new string search for the edit distance/edge with the greatest overlap again. Repeat the process.
-#Cost: not always the correct answer. Also not applicable when we have repetitive regions as is true with the genome.
+#Cost: not always the correct answer. 
+#Also not applicable when we have repetitive regions as is true with most genomes (more than half of the human genome is comprised of transposable elements).
 
 #              AAA AAB ABB BBA BBB
 #merging nodes#AAAB ABB BBA BBB
