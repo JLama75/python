@@ -37,7 +37,7 @@ def queryIndex(p, t, index): #index is an object of class Index
 
 
 #####################
-
+#
 def approximate_match(p, t, n): #n: max no. of mismatches
 #how many segments = no. of mismatches + 1
     segment_length = int(round(len(p)/ (n+1)))
