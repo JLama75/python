@@ -1,11 +1,14 @@
-#shortest common superstring problem (SCS): finding the shortest string that contains all the input string or substring. Used for genome assembly
+#shortest common superstring problem (SCS) by brute force: 
+#finding the shortest string that contains all the input string or substring. Used for genome assembly
+
 #S: BAA AAB BBA ABA ABB BBB AAA BAB
 #Concat(S): BAAAABBBAABAABBBBBAAABAB
 #SCS(S): AAABBBABAA
 
 #downside: not tractable for large sequences- NP-complete
-#Try all possible orderings and pick shortest superstring
-#If S contains n strings, n! orderings possible. Larger strings more time and slower.
+#Try all possible orderings and pick the shortest superstring
+#If S contains n strings, n! orderings are possible. 
+#So, we have to compute the superstrings for every permutation of reads. As our list of reads grows it would require more time and are much slower.
 
 #If a and b are two reads. Lets see if the prefix of b overlaps suffix of a and if they do return the overlap length.
 def overlap(a, b, min_length=3): #b comes after a
