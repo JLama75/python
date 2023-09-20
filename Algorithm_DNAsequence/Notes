@@ -1,4 +1,4 @@
-Familarizing to different algorithms applied in genomics for analyzing DNA sequencing data using python.
-Starting with exact and approximate matching when searching for a pattern in the text/genome (naive exact, Boyer-Moore, Index-assisted, and pegionhole principle).
-Algorithms used in read alignment using both edit distance problem and global and local alignment problem.
-Algorithms and strategies to solve assembly problems
+Familiarizing with different algorithms applied in genomics for analyzing DNA sequencing data using Python.
+Starting with exact and approximate matching when searching for a pattern in the text/genome (naive exact, Boyer-Moore, Index-assisted, and pigeonhole principle).
+Algorithms used in read alignment using edit distance problems and global and local alignment problems.
+Algorithms and strategies to solve genome assembly problems (overlap graph, brute-force, greedy shortest common superstring, DeBruijn graphs and Eulerian walks)
