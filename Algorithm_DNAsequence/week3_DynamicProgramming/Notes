@@ -1,0 +1,4 @@
+Using dynamic programming to solve local alignment problems. (Smith-Waterman Algorithm)
+You make a 2D matrix for matches, mismatches, and gap penalty scores. Let's call it the score matrix 
+You make another 2D matrix for edit distance (optimal no. of mismatches/gaps to make one string to another) calculated using the scores in the score matrix
+After filling out the matrix for edit distance, you do a traceback. Starting from the lower row with maximum edit distance and going upwards.
