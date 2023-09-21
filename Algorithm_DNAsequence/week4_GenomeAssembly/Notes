@@ -1,3 +1,15 @@
-The algorithms used to solve genome Assembly problem used two different graphs. 
-Overlap graph is used in the algorithm for shortest common superstring and De Bruijn graph is used for eulerian walk.
-Shortest common superstring can be solved by using brute force or greedy algorithm.
+The algorithms used to solve the genome Assembly problem used two different graphs. 
+Overlap graph is used in the algorithm for the shortest common superstring and De Bruijn graph is used for Eulerian walk.
+The shortest common superstring can be solved by using brute force or a greedy algorithm.
+The programs that use overlap graphs are called Overlap-Layout-Consensus (OLC) assembly. 
+The programs that use De Bruijn Graph are called De Bruijn Graph-based (DBG) assembly. 
+
+Sequencing errors and polyploidy can lead to messy dead-end disconnected bubbled graphs. Bubbles relating to the polyploidy.
+Repeats create ambiguity in the graphs.
+overlap graphs/shortest common superstrings are vulnerable to over-collapsing the repeats whereas, 
+the Eulerian Walk/De Bruijn Graph is vulnerable to shuffling around the bits of the genome in between the repetitive regions.
+
+To deal with this, chop the Graph/genome into pieces that do not have ambiguity and assemble those. 
+The partial reconstructions that we can put unambiguously are called contigs (contiguous sequences). 
+So instead of reporting a single reference genome, every assembler will report a set of contigs.
+So every assembly with the exception of simple genomes like bacterial genomes, is fragmented including the human reference genome.
