@@ -13,3 +13,7 @@ To deal with this, chop the Graph/genome into pieces that do not have ambiguity 
 The partial reconstructions that we can put unambiguously are called contigs (contiguous sequences). 
 So instead of reporting a single reference genome, every assembler will report a set of contigs.
 So every assembly with the exception of simple genomes like bacterial genomes, is fragmented including the human reference genome.
+
+To tackle repetitive sequence problems one could use longer reads.
+Single-molecule sequencers generate reads thousands of bp long but are error-prone.
+Pacific Biosciences (PacBio) and Oxford Nanopore Technologies (Nanopore) are the two dominant producers of long-read sequencing technologies.
