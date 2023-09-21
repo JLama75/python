@@ -1,0 +1,3 @@
+The algorithms used to solve genome Assembly problem used two different graphs. 
+Overlap graph is used in the algorithm for shortest common superstring and De Bruijn graph is used for eulerian walk.
+Shortest common superstring can be solved by using brute force or greedy algorithm.
