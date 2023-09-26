@@ -19,9 +19,21 @@ def binarySearchHelper(lst, elt, left, right):
         #print("less than: ", lst[mid])
         return(binarySearchHelper(lst, elt, left, mid-1))
 
+
+def binarySearch(lst, elt):
+    n = len(lst)
+    if (elt < lst[0] or elt > lst[n-1]):
+        return None
+    else: # Note: we will only get here if
+          # lst[0] <= elt <= lst[n-1]
+        return binarySearchHelper(lst, elt, 0, n-1)
+#OR,
 lst = [1, 2, 4, 7, 9, 12, 20, 45]
 elt = 9
 binarySearchHelper(lst, elt, 0, (len(lst)-1))
+
+print("Searching for 9 in list [0,2,3,4,6,9,12]")
+print(binarySearch([0,2,3,4,6,9,12], 9))
 
 #Running time analysis of binary search
 #In binary search algorithm, in each iteration the size becomes halved.
