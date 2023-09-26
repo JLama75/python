@@ -11,7 +11,9 @@
 #i) Find insert position
 #ii) move elements over
 
-#start scanning from right and swap the elements if A[j] < A[j-1]
+#start scanning from right of the insert position and swap the elements if A[j] < A[j-1], A = array, insert position = j
+
+#Lets write a python code that sorts an array 'A' using the insertion sort algorithm
 
 A= [2,7,15,24,10,1]
 
@@ -23,11 +25,12 @@ def insert(A, j):
        else:
            break
     return A
-#insertionsort(A)
-for j in range(len(A)):
-    print(j)
-    insert(A, j)
-print("final array: ", A)
+    
+def insertionsort(A):
+    for j in range(len(A)):
+        print(j)
+        insert(A, j)
+    print("final array: ", A)
 
 #Computation complexity (how many times does it take to run and how many space):
 #measure time to be independent of the processor
